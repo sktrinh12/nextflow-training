@@ -19,7 +19,7 @@ process INDEX {
     stdout
 
     """
-    /root/miniconda3/envs/genetics/bin/python $projectDir/bin/reverse_complement.py -sq $params.transcriptome_file
+    /usr/local/bin/python3 $projectDir/bin/reverse_complement.py -sq $params.transcriptome_file
     """
 }
 
