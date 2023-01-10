@@ -90,3 +90,34 @@ workflow {
     fastqc_ch = FASTQC(read_pairs_ch)
     MULTIQC(quant_ch.mix(fastqc_ch).collect())
 }
+
+/*
+multiqc needs a directory to parse log files from fastqc, so we are passing all the file paths to those individual fastqc runs and generating one plot
+
+The collect operator collects all the items emitted by a channel to a List and return the resulting object as a sole emission. For example:
+
+Channel
+    .of( 1, 2, 3, 4 )
+    .collect()
+    .view()
+
+# outputs
+[1,2,3,4]'
+=============
+The mix operator combines the items emitted by two (or more) channels into a single channel.
+
+For example:
+
+c1 = Channel.of( 1, 2, 3 )
+c2 = Channel.of( 'a', 'b' )
+c3 = Channel.of( 'z' )
+
+c1.mix(c2,c3)
+    .subscribe onNext: { println it }, onComplete: { println 'Done' }
+1
+2
+3
+'a'
+'b'
+'z'
+*/

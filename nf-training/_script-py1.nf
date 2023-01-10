@@ -1,4 +1,3 @@
-#!/usr/bin/env nextflow
 params.reads = "$projectDir/etc-scripts/"
 params.outdir = "results"
 params.k = 3
