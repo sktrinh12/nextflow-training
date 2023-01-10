@@ -21,7 +21,7 @@ process KMER {
     stdout
 
     """
-    python ${p}/bin/kmer.py -k ${params.k} -sq ${p}/data/test/vibrio_cholerae_sequence.txt
+    /usr/local/bin/python3 ${p}/bin/kmer.py -k ${params.k} -sq ${p}/data/test/vibrio_cholerae_sequence.txt
     """
 }
 
