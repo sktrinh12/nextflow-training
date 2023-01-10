@@ -1,4 +1,7 @@
 import argparse
+import sys
+print(sys.version)
+print(sys.version_info)
 from pathlib import Path
 
 compl = {'A':'T','T':'A','C':'G','G':'C'}

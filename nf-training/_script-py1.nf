@@ -1,4 +1,4 @@
-params.reads = "$projectDir/etc-scripts/"
+params.reads = "$projectDir"
 params.outdir = "results"
 params.k = 3
 
@@ -21,7 +21,7 @@ process KMER {
     stdout
 
     """
-    python ${p}/kmer.py -k ${params.k} -sq ${p}/vibrio_cholerae_sequence.txt
+    python ${p}/bin/kmer.py -k ${params.k} -sq ${p}/data/test/vibrio_cholerae_sequence.txt
     """
 }
 
