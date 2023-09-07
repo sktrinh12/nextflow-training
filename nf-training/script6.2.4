@@ -1,0 +1,31 @@
+params.reads = "$baseDir/data/ggal/*_1.fq"
+params.transcriptome_file = "$baseDir/data/ggal/transcriptome.fa"
+methods = ['salmon', 'kallisto']
+
+Channel
+				.fromPath(params.reads)
+				.set { read_ch }
+
+process COMMAND {
+  tag "Run_command" 
+  debug true
+
+  input:
+  path reads 
+	path transcriptome
+  each mode
+
+	output:
+	path result
+
+  script:
+  """
+  echo $mode $reads $transcriptome > result
+  """
+}
+
+workflow {
+  concat_ch = COMMAND(read_ch, params.transcriptome_file, methods )
+  concat_ch 
+		.view { "to run: ${it.text}" }
+}

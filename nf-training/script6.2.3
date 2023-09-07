@@ -1,0 +1,24 @@
+reads = Channel.fromPath( "$baseDir/data/ggal/*_1.fq" )
+readVal = Channel.value( "$baseDir/data/ggal/transcriptome.fa" )
+
+process CONCATENTATE {
+  debug true
+  tag "Concat all files but with a value consumption"
+
+  input:
+  path file
+  val transcriptome
+
+  output:
+  path result
+
+  script:
+  """
+  echo $file and $transcriptome >> result
+  """
+}
+
+workflow {
+  concat_ch = CONCATENTATE(reads, readVal)
+  concat_ch.view()
+}

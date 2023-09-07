@@ -1,0 +1,23 @@
+reads = Channel.fromPath( "$baseDir/data/ggal/*_1.fq" )
+
+process CONCATENTATE {
+  debug true
+  tag "Concat all files"
+
+  input:
+  path file
+
+  output:
+  path 'top_10_lines'
+
+  script:
+  """
+  cat $file > catfile.txt 
+  head -n 20 catfile.txt > top_10_lines
+  """
+}
+
+workflow {
+  concat_ch = CONCATENTATE(reads.collect())
+  concat_ch.view()
+}
